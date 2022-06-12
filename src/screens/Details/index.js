@@ -2,8 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
+import { formatDate } from '../../utils/formatDate';
+
 import Text from '../../shared/Text';
 import Image from '../../shared/Image';
+import Button from '../../shared/Button';
+import Navigation from '../../shared/Navigation';
 
 const Container = styled.div`
   min-height: 100%;
@@ -32,6 +36,11 @@ const Item = styled.li`
   margin-bottom: .5rem;
 `;
 
+const NavContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const Details = () => {
   const location = useLocation();
   const { data } = location.state;
@@ -41,8 +50,13 @@ const Details = () => {
   const joinStrings = (arr, delimiter = ', ') =>
     arr.join(delimiter);
 
+  const onNavigate = () => {
+    window.open(infoLink, '_blank');
+  }
+
   return (
     <Container>
+      <Navigation title="Detalhes do livro" />
       <Content>
         <Image width="300px" src={imageLinks?.thumbnail} />
         <About>
@@ -67,17 +81,20 @@ const Details = () => {
             </Item>
             <Item>
               <Text color="grayLight">Publicado em: </Text>
-              <Text color="white" weight="bold">{publishedDate}</Text>
+              <Text color="white" weight="bold">{formatDate(publishedDate)}</Text>
             </Item>
             <Item>
               <Text color="grayLight">Descricao: </Text>
               <Text color="white" weight="bold" lineHeight="md">{description}</Text>
             </Item>
-            {maturityRating === 'MATURE' ? (
-              <Item>
-                <Image width="30px" height="30px" src="https://www.svgrepo.com/show/10550/plus-18-movie.svg" alt="Livro direcionado ao publico maior de 18 anos." />
-              </Item>
-            ) : null}
+            <NavContainer>
+              <Button onClick={onNavigate} mr="1rem">
+                Ver mais
+              </Button>
+              {maturityRating === 'MATURE' ? (
+                  <Image width="30px" height="30px" src="https://www.svgrepo.com/show/10550/plus-18-movie.svg" alt="Livro direcionado ao publico maior de 18 anos." />
+              ) : null}
+            </NavContainer>
           </List>
         </About>
       </Content>
