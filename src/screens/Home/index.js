@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import GoogleBooksService from '../../services/googleBooks';
+import BookstoreService from '../../services/bookstore';
 
 import Searchbar from '../../shared/Searchbar';
 import Text from '../../shared/Text';
@@ -31,7 +31,7 @@ const Home = () => {
     const { value } = e.target;
 
     if (value.length > 2) {
-      const res = await GoogleBooksService.getBooks(value);
+      const res = await BookstoreService.getBooks(value);
 
       handleBooks(res);
     }

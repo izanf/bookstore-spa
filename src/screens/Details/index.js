@@ -44,32 +44,31 @@ const NavContainer = styled.div`
 const Details = () => {
   const location = useLocation();
   const { data } = location.state;
-  const { authors, categories, imageLinks, infoLink, language, maturityRating, pageCount, publishedDate, title, subtitle, description } = data;
-  console.log('prooooopsx', data);
+  const { authors, categories, image, info_link, language, maturity_rating, page_count, published_date, title, subtitle, description } = data;
 
-  const joinStrings = (arr, delimiter = ', ') =>
-    arr.join(delimiter);
+  // const joinStrings = (arr, delimiter = ', ') =>
+  //   arr.join(delimiter);
 
   const onNavigate = () => {
-    window.open(infoLink, '_blank');
+    window.open(info_link, '_blank');
   }
 
   return (
     <Container>
       <Navigation title="Detalhes do livro" />
       <Content>
-        <Image width="300px" src={imageLinks?.thumbnail} />
+        <Image width="300px" src={image} />
         <About>
           <Text color="white" as="h2">{title}</Text>
           <Text color="white" >{subtitle}</Text>
           <List>
             <Item>
               <Text color="grayLight">Autores: </Text>
-              <Text color="white" weight="bold">{joinStrings(authors)}</Text>
+              <Text color="white" weight="bold">{authors}</Text>
             </Item>
             <Item>
               <Text color="grayLight">Categorias: </Text>
-              <Text color="white" weight="bold">{joinStrings(categories)}</Text>
+              <Text color="white" weight="bold">{categories}</Text>
             </Item>
             <Item>
               <Text color="grayLight">Lingua: </Text>
@@ -77,11 +76,11 @@ const Details = () => {
             </Item>
             <Item>
               <Text color="grayLight">Paginas: </Text>
-              <Text color="white" weight="bold">{pageCount}</Text>
+              <Text color="white" weight="bold">{page_count}</Text>
             </Item>
             <Item>
               <Text color="grayLight">Publicado em: </Text>
-              <Text color="white" weight="bold">{formatDate(publishedDate)}</Text>
+              <Text color="white" weight="bold">{formatDate(published_date)}</Text>
             </Item>
             <Item>
               <Text color="grayLight">Descricao: </Text>
@@ -91,7 +90,7 @@ const Details = () => {
               <Button onClick={onNavigate} mr="1rem">
                 Ver mais
               </Button>
-              {maturityRating === 'MATURE' ? (
+              {maturity_rating === 'MATURE' ? (
                   <Image width="30px" height="30px" src="https://www.svgrepo.com/show/10550/plus-18-movie.svg" alt="Livro direcionado ao publico maior de 18 anos." />
               ) : null}
             </NavContainer>

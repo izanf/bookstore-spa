@@ -35,10 +35,10 @@ const BookItem = ({ data }) => {
   }
 
   return (
-    <Container image={data?.imageLinks?.thumbnail} onClick={onNavigate}>
+    <Container image={data?.image} onClick={onNavigate}>
       <Content>
         <Text color="white" weight="500" mb=".3rem">{data?.title}</Text>
-        {data?.authors?.length ? <Text color="grayLight" size="xs">{data?.authors?.join(', ')}</Text> : null}
+        {data?.authors ? <Text color="grayLight" size="xs">{data?.authors}</Text> : null}
       </Content>
     </Container>
   );

@@ -13,7 +13,7 @@ const Container = styled.div`
 const BooksList = ({ data }) => (
   <Container>
     {data.map((book) => (
-      <BookItem data={book?.volumeInfo} />
+      <BookItem data={book} />
     ))}
   </Container>
 );

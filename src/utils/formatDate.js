@@ -1,5 +1,2 @@
-export const formatDate = (date) => {
-  const splittedDate = date.split('-');
-
-  return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
-}
+export const formatDate = (date) =>
+  date.split('-').join('/');
